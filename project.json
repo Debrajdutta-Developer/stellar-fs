@@ -1,0 +1,35 @@
+{
+  "name": "StellarFS",
+  "slug": "stellar-fs",
+  "target_user": "Systems Engineers & Storage Architects",
+  "problem": "Standard user-space file systems rely on heavy kernel modules or lack robust copy-on-write structural sharing, transparent block deduplication, and crash-safe transactional journaling.",
+  "pain": "Developers experimenting with custom file system architectures must interface with complex OS-specific FUSE bindings or write unsafe disk-allocation logic from scratch.",
+  "solution": "A zero-dependency, user-space virtual file system and storage container written in C11. It implements a custom block allocator, an on-disk B+Tree inode index, cryptographic block-level deduplication using SHA-256 digests, transparent LZ4-style block compression, a multi-version crash-safe journaling log, sparse file mapping, hierarchical directory trees, and an exhaustive fault-injection test runner.",
+  "verification": "Deterministic integration suite injecting bit-flip corruptions, power failures mid-journal-write, and out-of-space allocations to verify recovery invariants.",
+  "category": "systems-tool",
+  "keywords": [
+    "systems-engineering",
+    "file-system",
+    "storage-engine",
+    "c11",
+    "block-allocation",
+    "journaling",
+    "deduplication",
+    "b-plus-tree",
+    "crash-safety"
+  ],
+  "major_features": [
+    "Custom block allocator managing fixed-size storage partitions with bitmap free-space tracking",
+    "On-disk B+Tree inode index mapping file paths to block pointer arrays",
+    "Cryptographic block deduplication engine using SHA-256 content hashing to eliminate redundant blocks",
+    "Transparent block compression subsystem compressing individual disk pages before allocation",
+    "Write-ahead journaling log providing crash-safe atomicity for multi-block directory updates",
+    "Sparse file allocation engine handling unallocated holes without consuming physical disk sectors",
+    "Hierarchical directory lookup parser supporting nested path traversal and hard link resolution",
+    "Fault-injection test suite simulating power cuts, truncated files, and damaged block bitmaps"
+  ],
+  "technology": "C11",
+  "factory_profile": "systems-c",
+  "difficulty": "HARD_OR_EXTREME",
+  "truth_policy": "Only validated behavior may be claimed as working."
+}
